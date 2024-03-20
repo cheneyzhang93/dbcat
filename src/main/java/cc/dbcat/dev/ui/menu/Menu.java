@@ -1,7 +1,9 @@
 package cc.dbcat.dev.ui.menu;
 
+import cc.dbcat.dev.ui.Type;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,11 +20,23 @@ public class Menu {
      */
     private String name;
     /**
-     * 定义菜单组,每个菜单组同一个groupKey
+     * 默认情况下是否不能点击
      */
-    private String groupKey;
+    private Boolean disabled = false;
+    /**
+     * 默认情况下是否选中
+     */
+    private Boolean selected = false;
+    /**
+     * 默认类型为文本
+     */
+    private Type type = Type.TEXT;
+    /**
+     * 菜单组排序
+     */
+    private Boolean separator = false;
     /**
      * 子菜单
      */
-    private List<Menu> menuItems;
+    private List<Menu> items = new ArrayList<>();
 }

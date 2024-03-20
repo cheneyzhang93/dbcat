@@ -2,6 +2,7 @@ package cc.dbcat.dev.ui.menu;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,5 +18,5 @@ public class MenuBar {
     /**
      * 按钮组
      */
-    private List<Menu> menus;
+    private List<Menu> menus = new ArrayList<>();
 }

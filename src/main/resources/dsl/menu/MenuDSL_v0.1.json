@@ -1,0 +1,336 @@
+{
+  "version": "v0.1",
+  "menus": [
+    {
+      "key": "file",
+      "name": "文件",
+      "items": [
+        {
+          "key": "create_project",
+          "name": "新建项目"
+        },
+        {
+          "key": "create_connect",
+          "name": "新建连接",
+          "items": [
+            {
+              "key": "mysql",
+              "name": "MySQL"
+            }
+          ]
+        },
+        {
+          "key": "create",
+          "name": "新建",
+          "items": [
+            {
+              "key": "table",
+              "name": "表"
+            },
+            {
+              "key": "view",
+              "name": "视图"
+            },
+            {
+              "key": "function",
+              "name": "函数"
+            },
+            {
+              "key": "user",
+              "name": "用户"
+            },
+            {
+              "key": "other",
+              "name": "其他"
+            }
+          ]
+        },
+        {
+          "key": "open_external_file",
+          "separator": true,
+          "name": "打开外部文件",
+          "items": [
+            {
+              "key": "ext_view",
+              "name": "查询"
+            },
+            {
+              "key": "ext_model",
+              "name": "模型"
+            },
+            {
+              "key": "ext_chat",
+              "name": "图表工作区"
+            }
+          ]
+        },
+        {
+          "key": "open_recently_used",
+          "name": "打开最近使用过的",
+          "items": [
+            {
+              "key": "clear_recently",
+              "name": "清除最近使用"
+            }
+          ]
+        },
+        {
+          "key": "import_connect",
+          "separator": true,
+          "name": "导入连接"
+        },
+        {
+          "key": "export_connect",
+          "name": "导出连接"
+        },
+        {
+          "key": "closeWindow",
+          "separator": true,
+          "name": "关闭窗口"
+        },
+        {
+          "key": "exist",
+          "name": "退出"
+        }
+      ]
+    },
+    {
+      "key": "edit",
+      "name": "编辑",
+      "items": [
+        {
+          "key": "copy",
+          "groupKey": "edit_1",
+          "name": "复制 Ctrl+C",
+          "disabled": true
+        },
+        {
+          "key": "paste",
+          "groupKey": "edit_1",
+          "name": "粘贴 Ctrl+V",
+          "disabled": true
+        },
+        {
+          "key": "copy",
+          "groupKey": "edit_2",
+          "name": "全选 Ctrl+A"
+        }
+      ]
+    },
+    {
+      "key": "view",
+      "name": "查看",
+      "items": [
+        {
+          "key": "nav_bar_window",
+          "name": "导航栏窗口",
+          "items": [
+            {
+              "key": "show_nav_bar",
+              "name": "显示导航栏",
+              "selected": true,
+              "type": "checkbox"
+            }
+          ]
+        },
+        {
+          "key": "info_window",
+          "name": "信息栏窗口",
+          "items": [
+            {
+              "key": "show_info",
+              "name": "显示信息栏"
+            }
+          ]
+        },
+        {
+          "key": "show_list",
+          "separator": true,
+          "name": "列表",
+          "type": "radio"
+        },
+        {
+          "key": "show_detail",
+          "name": "详细信息",
+          "type": "radio"
+        },
+        {
+          "key": "show_er",
+          "name": "ER图表",
+          "disabled": true,
+          "type": "radio"
+        },
+        {
+          "key": "order",
+          "name": "排序",
+          "items": [
+            {
+              "key": "order_name",
+              "name": "名",
+              "type": "checkbox",
+              "selected": true
+            },
+            {
+              "key": "order_group",
+              "name": "组",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_auto_increment",
+              "name": "自动递增值",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_row_format",
+              "name": "行格式",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_create_time",
+              "name": "创建日期",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_update_time",
+              "name": "修改日期",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_index_length",
+              "name": "索引长度",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_data_length",
+              "name": "数据长度",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_engine",
+              "name": "引擎",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_row",
+              "name": "行",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_max_data_length",
+              "name": "最大数据长度",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_data_free_space",
+              "name": "数据可用空间",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_auto_increment",
+              "name": "自动递增值",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_check_time",
+              "name": "检查时间",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_order_rule",
+              "name": "排序规则",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_create_option",
+              "name": "创建选项",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_comment",
+              "name": "注释",
+              "type": "checkbox"
+            },
+            {
+              "key": "order_asc",
+              "separator": true,
+              "name": "升序排序",
+              "type": "radio"
+            },
+            {
+              "key": "order_desc",
+              "name": "降序排序",
+              "type": "radio",
+              "selected": true
+            }
+          ]
+        },
+        {
+          "key": "select_column",
+          "name": "选择列"
+        }
+      ]
+    },
+    {
+      "key": "tool",
+      "name": "工具",
+      "items": [
+        {
+          "key": "data_transfer",
+          "name": "数据传输"
+        },
+        {
+          "key": "data_generate",
+          "name": "数据生成"
+        },
+        {
+          "key": "data_sync",
+          "name": "数据同步"
+        },
+        {
+          "key": "structure_sync",
+          "name": "结构同步"
+        },
+        {
+          "key": "drive_manage",
+          "name": "驱动管理"
+        },
+        {
+          "key": "log",
+          "separator": true,
+          "name": "日志"
+        },
+        {
+          "key": "option",
+          "name": "选项"
+        }
+      ]
+    },
+    {
+      "key": "help",
+      "name": "帮助",
+      "items": [
+        {
+          "key": "doc",
+          "name": "帮助"
+        },
+        {
+          "key": "online_doc",
+          "name": "在线文档"
+        },
+        {
+          "key": "feedback",
+          "name": "向DBcat社区反馈问题"
+        },
+        {
+          "key": "new",
+          "name": "查看DBcat最新功能"
+        },
+        {
+          "key": "about",
+          "separator": true,
+          "name": "关于"
+        }
+      ]
+    }
+  ]
+}
