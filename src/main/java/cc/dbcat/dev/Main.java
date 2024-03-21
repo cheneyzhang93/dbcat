@@ -1,13 +1,13 @@
 package cc.dbcat.dev;
 
-import cc.dbcat.dev.ui.MainUI;
+import cc.dbcat.dev.ui.MainFrame;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        MainUI mainUI = new MainUI();
-        JFrame jFrame = mainUI.init();
+        MainFrame mainFrame = new MainFrame();
+        JFrame jFrame = mainFrame.init();
         jFrame.setVisible(true);
     }
 }

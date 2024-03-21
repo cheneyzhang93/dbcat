@@ -3,6 +3,7 @@ package cc.dbcat.dev.ui.menu;
 import cc.dbcat.dev.ui.Type;
 import lombok.Data;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,10 @@ public class Menu {
      * 菜单组排序
      */
     private Boolean separator = false;
+    /**
+     * 快捷键
+     */
+    private KeyStroke accelerator;
     /**
      * 子菜单
      */

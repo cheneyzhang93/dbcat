@@ -1,16 +1,19 @@
 package cc.dbcat.dev.ui.menu;
 
 import cc.dbcat.dev.Main;
+import cc.dbcat.dev.ui.Accelerator;
 import cc.dbcat.dev.ui.Type;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.formdev.flatlaf.util.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.List;
 
 /**
  * 菜单DSL解释器,
@@ -36,6 +39,7 @@ public class MenuDSLInterpreter {
         menu.setDisabled(node.get("disabled") != null && node.get("disabled").asBoolean());
         menu.setSelected(node.get("selected") != null && node.get("selected").asBoolean());
         menu.setSeparator(node.get("separator") != null && node.get("separator").asBoolean());
+        menu.setAccelerator(node.get("accelerator") != null ? Accelerator.getKey(node.get("accelerator").asText()) : null);
         return menu;
     }
 
@@ -85,16 +89,19 @@ public class MenuDSLInterpreter {
                 JCheckBoxMenuItem jItem = new JCheckBoxMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
+                jItem.setAccelerator(dItem.getAccelerator());
                 parentJmenu.add(jItem);
             } else if (dItem.getType().equals(Type.RADIO)) {
                 JRadioButtonMenuItem jItem = new JRadioButtonMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
+                jItem.setAccelerator(dItem.getAccelerator());
                 parentJmenu.add(jItem);
             } else if (dItem.getType().equals(Type.TEXT) && dItem.getItems().isEmpty()) {
                 JMenuItem jItem = new JMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
+                jItem.setAccelerator(dItem.getAccelerator());
                 parentJmenu.add(jItem);
             } else {
                 JMenu jItem = new JMenu();
@@ -103,8 +110,6 @@ public class MenuDSLInterpreter {
                 parentJmenu.add(jItem);
                 dynamicMenuDp(dItem.getItems(), jItem);
             }
-
-
         }
     }
 

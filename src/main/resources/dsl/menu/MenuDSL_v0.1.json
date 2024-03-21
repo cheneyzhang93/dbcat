@@ -100,20 +100,18 @@
       "items": [
         {
           "key": "copy",
-          "groupKey": "edit_1",
-          "name": "复制 Ctrl+C",
-          "disabled": true
+          "name": "复制",
+          "accelerator": "copy"
         },
         {
           "key": "paste",
-          "groupKey": "edit_1",
-          "name": "粘贴 Ctrl+V",
-          "disabled": true
+          "name": "粘贴",
+          "accelerator": "paste"
         },
         {
-          "key": "copy",
-          "groupKey": "edit_2",
-          "name": "全选 Ctrl+A"
+          "key": "cut",
+          "name": "剪切",
+          "accelerator": "cut"
         }
       ]
     },
@@ -311,7 +309,8 @@
       "items": [
         {
           "key": "doc",
-          "name": "帮助"
+          "name": "帮助",
+          "accelerator": "help"
         },
         {
           "key": "online_doc",
@@ -319,7 +318,8 @@
         },
         {
           "key": "feedback",
-          "name": "向DBcat社区反馈问题"
+          "separator": true,
+          "name": "向社区反馈问题"
         },
         {
           "key": "new",
