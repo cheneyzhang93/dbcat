@@ -81,6 +81,8 @@ public class MenuDSLInterpreter {
         if (dynamicItems.isEmpty()) {
             return;
         }
+        ButtonGroup radioGroup = new ButtonGroup();
+        ButtonGroup checkboxGroup = new ButtonGroup();
         for (Menu dItem : dynamicItems) {
             if (dItem.getSeparator()) {
                 parentJmenu.addSeparator();
@@ -90,12 +92,14 @@ public class MenuDSLInterpreter {
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
                 jItem.setAccelerator(dItem.getAccelerator());
+                checkboxGroup.add(jItem);
                 parentJmenu.add(jItem);
             } else if (dItem.getType().equals(Type.RADIO)) {
                 JRadioButtonMenuItem jItem = new JRadioButtonMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
                 jItem.setAccelerator(dItem.getAccelerator());
+                radioGroup.add(jItem);
                 parentJmenu.add(jItem);
             } else if (dItem.getType().equals(Type.TEXT) && dItem.getItems().isEmpty()) {
                 JMenuItem jItem = new JMenuItem();

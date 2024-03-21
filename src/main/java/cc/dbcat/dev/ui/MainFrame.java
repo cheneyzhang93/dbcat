@@ -1,7 +1,10 @@
 package cc.dbcat.dev.ui;
 
 import cc.dbcat.dev.Main;
+import cc.dbcat.dev.ui.logo.LogoProvider;
+import cc.dbcat.dev.ui.menu.MenuBarProvider;
 import cc.dbcat.dev.ui.menu.MenuDSLInterpreter;
+import cc.dbcat.dev.ui.theme.ThemeProvider;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 
 import javax.imageio.ImageIO;
@@ -16,29 +19,20 @@ public class MainFrame {
 
     public JFrame init() {
         // 主题设置
-        FlatIntelliJLaf.setup();
-        System.setProperty("flatlaf.animation", "false");
-        System.setProperty("flatlaf.menuBarEmbedded", "false");
-
+        ThemeProvider themeProvider = new ThemeProvider();
+        themeProvider.provider();
         // 创建 JFrame 实例
         JFrame frame = new JFrame("DBcat " + version);
-        try {
-            frame.setIconImage(ImageIO.read(Objects.requireNonNull(Main.class.getResourceAsStream("/image/favicon.png"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        // logo
+        LogoProvider logoProvider = new LogoProvider();
+        frame.setIconImage(logoProvider.provider());
+        // 窗口设置
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900, 700);
-
-        // 设置 JFrame 的布局管理器为 BorderLayout
         frame.setLayout(new BorderLayout());
-        // 菜单
-        MenuDSLInterpreter menuDSLInterpreter = new MenuDSLInterpreter(version);
-        UIManager.put("MenuBar.itemMargins", new Insets(3, 15, 3, 15));
-        UIManager.put("MenuItem.textNoAcceleratorGap", 60);
-        UIManager.put("MenuItem.textAcceleratorGap", 60);
-        frame.setJMenuBar(menuDSLInterpreter.getInitJMenuBar());
+        // 菜单栏
+        MenuBarProvider menuBarProvider = new MenuBarProvider();
+        frame.setJMenuBar(menuBarProvider.provider(version));
 
 
         return frame;

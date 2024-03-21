@@ -4,6 +4,7 @@ import cc.dbcat.dev.ui.Type;
 import lombok.Data;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,10 @@ public class Menu {
      * 快捷键
      */
     private KeyStroke accelerator;
+    /**
+     * 菜单监听事件
+     */
+    private List<ActionListener> listeners;
     /**
      * 子菜单
      */

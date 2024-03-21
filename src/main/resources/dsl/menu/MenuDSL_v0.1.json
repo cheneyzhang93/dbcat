@@ -7,7 +7,8 @@
       "items": [
         {
           "key": "create_project",
-          "name": "新建项目"
+          "name": "新建项目",
+          "listeners": []
         },
         {
           "key": "create_connect",
@@ -15,7 +16,8 @@
           "items": [
             {
               "key": "mysql",
-              "name": "MySQL"
+              "name": "MySQL",
+              "listeners": []
             }
           ]
         },
@@ -25,23 +27,28 @@
           "items": [
             {
               "key": "table",
-              "name": "表"
+              "name": "表",
+              "listeners": []
             },
             {
               "key": "view",
-              "name": "视图"
+              "name": "视图",
+              "listeners": []
             },
             {
               "key": "function",
-              "name": "函数"
+              "name": "函数",
+              "listeners": []
             },
             {
               "key": "user",
-              "name": "用户"
+              "name": "用户",
+              "listeners": []
             },
             {
               "key": "other",
-              "name": "其他"
+              "name": "其他",
+              "listeners": []
             }
           ]
         },
@@ -52,45 +59,54 @@
           "items": [
             {
               "key": "ext_view",
-              "name": "查询"
+              "name": "查询",
+              "listeners": []
             },
             {
               "key": "ext_model",
-              "name": "模型"
+              "name": "模型",
+              "listeners": []
             },
             {
               "key": "ext_chat",
-              "name": "图表工作区"
+              "name": "图表工作区",
+              "listeners": []
             }
           ]
         },
         {
           "key": "open_recently_used",
           "name": "打开最近使用过的",
+          "listeners": [],
           "items": [
             {
               "key": "clear_recently",
-              "name": "清除最近使用"
+              "name": "清除最近使用",
+              "listeners": []
             }
           ]
         },
         {
           "key": "import_connect",
           "separator": true,
-          "name": "导入连接"
+          "name": "导入连接",
+          "listeners": []
         },
         {
           "key": "export_connect",
-          "name": "导出连接"
+          "name": "导出连接",
+          "listeners": []
         },
         {
           "key": "closeWindow",
           "separator": true,
-          "name": "关闭窗口"
+          "name": "关闭窗口",
+          "listeners": []
         },
         {
           "key": "exist",
-          "name": "退出"
+          "name": "退出",
+          "listeners": []
         }
       ]
     },
@@ -101,17 +117,20 @@
         {
           "key": "copy",
           "name": "复制",
-          "accelerator": "copy"
+          "accelerator": "copy",
+          "listeners": []
         },
         {
           "key": "paste",
           "name": "粘贴",
-          "accelerator": "paste"
+          "accelerator": "paste",
+          "listeners": []
         },
         {
           "key": "cut",
           "name": "剪切",
-          "accelerator": "cut"
+          "accelerator": "cut",
+          "listeners": []
         }
       ]
     },
@@ -127,7 +146,8 @@
               "key": "show_nav_bar",
               "name": "显示导航栏",
               "selected": true,
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             }
           ]
         },
@@ -137,7 +157,8 @@
           "items": [
             {
               "key": "show_info",
-              "name": "显示信息栏"
+              "name": "显示信息栏",
+              "listeners": []
             }
           ]
         },
@@ -145,18 +166,21 @@
           "key": "show_list",
           "separator": true,
           "name": "列表",
-          "type": "radio"
+          "selected": true,
+          "type": "radio",
+          "listeners": []
         },
         {
           "key": "show_detail",
           "name": "详细信息",
-          "type": "radio"
+          "type": "radio",
+          "listeners": []
         },
         {
           "key": "show_er",
           "name": "ER图表",
-          "disabled": true,
-          "type": "radio"
+          "type": "radio",
+          "listeners": []
         },
         {
           "key": "order",
@@ -166,105 +190,125 @@
               "key": "order_name",
               "name": "名",
               "type": "checkbox",
-              "selected": true
+              "selected": true,
+              "listeners": []
             },
             {
               "key": "order_group",
               "name": "组",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_auto_increment",
               "name": "自动递增值",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_row_format",
               "name": "行格式",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_create_time",
               "name": "创建日期",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_update_time",
               "name": "修改日期",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_index_length",
               "name": "索引长度",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_data_length",
               "name": "数据长度",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_engine",
               "name": "引擎",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_row",
               "name": "行",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_max_data_length",
               "name": "最大数据长度",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_data_free_space",
               "name": "数据可用空间",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_auto_increment",
               "name": "自动递增值",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_check_time",
               "name": "检查时间",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_order_rule",
               "name": "排序规则",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_create_option",
               "name": "创建选项",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_comment",
               "name": "注释",
-              "type": "checkbox"
+              "type": "checkbox",
+              "listeners": []
             },
             {
               "key": "order_asc",
               "separator": true,
               "name": "升序排序",
-              "type": "radio"
+              "type": "radio",
+              "listeners": []
             },
             {
               "key": "order_desc",
               "name": "降序排序",
               "type": "radio",
-              "selected": true
+              "selected": true,
+              "listeners": []
             }
           ]
         },
         {
           "key": "select_column",
-          "name": "选择列"
+          "name": "选择列",
+          "listeners": []
         }
       ]
     },
@@ -274,32 +318,39 @@
       "items": [
         {
           "key": "data_transfer",
-          "name": "数据传输"
+          "name": "数据传输",
+          "listeners": []
         },
         {
           "key": "data_generate",
-          "name": "数据生成"
+          "name": "数据生成",
+          "listeners": []
         },
         {
           "key": "data_sync",
-          "name": "数据同步"
+          "name": "数据同步",
+          "listeners": []
         },
         {
           "key": "structure_sync",
-          "name": "结构同步"
+          "name": "结构同步",
+          "listeners": []
         },
         {
           "key": "drive_manage",
-          "name": "驱动管理"
+          "name": "驱动管理",
+          "listeners": []
         },
         {
           "key": "log",
           "separator": true,
-          "name": "日志"
+          "name": "日志",
+          "listeners": []
         },
         {
           "key": "option",
-          "name": "选项"
+          "name": "选项",
+          "listeners": []
         }
       ]
     },
@@ -310,25 +361,30 @@
         {
           "key": "doc",
           "name": "帮助",
-          "accelerator": "help"
+          "accelerator": "help",
+          "listeners": []
         },
         {
           "key": "online_doc",
-          "name": "在线文档"
+          "name": "在线文档",
+          "listeners": []
         },
         {
           "key": "feedback",
           "separator": true,
-          "name": "向社区反馈问题"
+          "name": "向社区反馈问题",
+          "listeners": []
         },
         {
           "key": "new",
-          "name": "查看DBcat最新功能"
+          "name": "查看DBcat最新功能",
+          "listeners": []
         },
         {
           "key": "about",
           "separator": true,
-          "name": "关于"
+          "name": "关于",
+          "listeners": []
         }
       ]
     }
