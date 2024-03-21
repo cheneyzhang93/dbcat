@@ -1,4 +1,4 @@
-package cc.dbcat.dev.ui;
+package cc.dbcat.dev.ui.menubar;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -66,11 +66,6 @@
               "key": "ext_model",
               "name": "模型",
               "listeners": []
-            },
-            {
-              "key": "ext_chat",
-              "name": "图表工作区",
-              "listeners": []
             }
           ]
         },

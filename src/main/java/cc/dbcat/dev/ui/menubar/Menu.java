@@ -1,11 +1,9 @@
 package cc.dbcat.dev.ui.menubar;
 
-import cc.dbcat.dev.ui.Type;
 import lombok.Data;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +30,9 @@ public class Menu {
     /**
      * 默认类型为文本
      */
-    private Type type = Type.TEXT;
+    private MenuType menuType = MenuType.TEXT;
     /**
-     * 菜单组排序
+     * 菜单分割线
      */
     private Boolean separator = false;
     /**
@@ -48,5 +46,5 @@ public class Menu {
     /**
      * 子菜单
      */
-    private List<Menu> items = new ArrayList<>();
+    private List<Menu> items;
 }

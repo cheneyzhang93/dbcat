@@ -1,0 +1,94 @@
+{
+  "version": "v0.1",
+  "tools": [
+    {
+      "key": "create_connect",
+      "name": "新建连接",
+      "icon": "/image/icon24.png",
+      "type": "menu",
+      "items": [
+        {
+          "key": "mysql",
+          "name": "MySQL",
+          "type": "menu_item",
+          "listeners": []
+        }
+      ]
+    },
+    {
+      "key": "create_query",
+      "name": "新建查询",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "table",
+      "name": "表",
+      "icon": "/image/icon24.png",
+      "separator": true,
+      "listeners": []
+    },
+    {
+      "key": "view",
+      "name": "视图",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "function",
+      "name": "函数",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "user",
+      "name": "用户",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "other",
+      "name": "其他",
+      "icon": "/image/icon24.png",
+      "type": "menu",
+      "items": [
+        {
+          "key": "table_space",
+          "name": "表空间",
+          "type": "menu_item",
+          "listeners": []
+        },
+        {
+          "key": "event",
+          "name": "事件",
+          "type": "menu_item",
+          "listeners": []
+        }
+      ]
+    },
+    {
+      "key": "query",
+      "name": "查询",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "backup",
+      "name": "备份",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "task",
+      "name": "任务",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    },
+    {
+      "key": "model",
+      "name": "模型",
+      "icon": "/image/icon24.png",
+      "listeners": []
+    }
+  ]
+}

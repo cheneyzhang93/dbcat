@@ -1,18 +1,16 @@
 package cc.dbcat.dev.ui.menubar;
 
 import cc.dbcat.dev.Main;
-import cc.dbcat.dev.ui.Accelerator;
-import cc.dbcat.dev.ui.Type;
+import cc.dbcat.dev.util.ClazzUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,50 +19,39 @@ import java.util.List;
  */
 @Getter
 @AllArgsConstructor
-public class MenuDSLInterpreter {
+public class MenuBarDSLInterpreter {
 
     private String version;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private InputStream loadMenuResource() {
-        return Main.class.getResourceAsStream("/dsl/menu/MenuDSL_" + version + ".json");
-    }
-
-    private ActionListener createInstance(String clazzName) {
-        try {
-            Class<?> listenerClass = Class.forName(clazzName);
-            try {
-                return (ActionListener) listenerClass.getDeclaredConstructor().newInstance();
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                     NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        return Main.class.getResourceAsStream("/dsl/menubar/MenubarDSL_" + version + ".json");
     }
 
     private Menu createMenu(JsonNode node) {
         Menu menu = new Menu();
         menu.setKey(node.get("key").asText());
         menu.setName(node.get("name").asText());
-        menu.setType(Type.getType(node.get("type") != null ? node.get("type").asText() : Type.TEXT.name()));
+        menu.setMenuType(MenuType.getType(node.get("type") != null ? node.get("type").asText() : MenuType.TEXT.name()));
         menu.setDisabled(node.get("disabled") != null && node.get("disabled").asBoolean());
         menu.setSelected(node.get("selected") != null && node.get("selected").asBoolean());
         menu.setSeparator(node.get("separator") != null && node.get("separator").asBoolean());
         menu.setAccelerator(node.get("accelerator") != null ? Accelerator.getKey(node.get("accelerator").asText()) : null);
-        if (node.get("accelerator") != null) {
-            if (node.get("accelerator").isArray()) {
-                for (JsonNode jsonNode : node.get("accelerator")) {
+        if (node.get("listeners") != null) {
+            if (menu.getListeners() == null) {
+                menu.setListeners(new ArrayList<>(1));
+            }
+            if (node.get("listeners").isArray()) {
+                for (JsonNode jsonNode : node.get("listeners")) {
                     if (jsonNode != null && !jsonNode.isEmpty()) {
                         // 类的全限定名
-                        menu.getListeners().add(createInstance(jsonNode.asText()));
+                        menu.getListeners().add(ClazzUtil.createActionListenerInstance(jsonNode.asText()));
                     }
                 }
             } else {
-                if (node.get("accelerator") != null && !node.get("accelerator").isEmpty()) {
-                    menu.getListeners().add(createInstance(node.get("accelerator").asText()));
+                if (node.get("listeners") != null && !node.get("listeners").isEmpty()) {
+                    menu.getListeners().add(ClazzUtil.createActionListenerInstance(node.get("listeners").asText()));
                 }
             }
         }
@@ -78,6 +65,9 @@ public class MenuDSLInterpreter {
         for (JsonNode node : itemNodes) {
             Menu item = createMenu(node);
             parsDp(item, node.get("items"));
+            if (parentMenu.getItems() == null) {
+                parentMenu.setItems(new ArrayList<>(5));
+            }
             parentMenu.getItems().add(item);
         }
     }
@@ -106,7 +96,7 @@ public class MenuDSLInterpreter {
     }
 
     private void dynamicMenuDp(List<Menu> dynamicItems, JMenu parentJmenu) {
-        if (dynamicItems.isEmpty()) {
+        if (dynamicItems == null) {
             return;
         }
         ButtonGroup radioGroup = new ButtonGroup();
@@ -115,21 +105,21 @@ public class MenuDSLInterpreter {
             if (dItem.getSeparator()) {
                 parentJmenu.addSeparator();
             }
-            if (dItem.getType().equals(Type.CHECKBOX)) {
+            if (dItem.getMenuType().equals(MenuType.CHECKBOX)) {
                 JCheckBoxMenuItem jItem = new JCheckBoxMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
                 jItem.setAccelerator(dItem.getAccelerator());
                 checkboxGroup.add(jItem);
                 parentJmenu.add(jItem);
-            } else if (dItem.getType().equals(Type.RADIO)) {
+            } else if (dItem.getMenuType().equals(MenuType.RADIO)) {
                 JRadioButtonMenuItem jItem = new JRadioButtonMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
                 jItem.setAccelerator(dItem.getAccelerator());
                 radioGroup.add(jItem);
                 parentJmenu.add(jItem);
-            } else if (dItem.getType().equals(Type.TEXT) && dItem.getItems().isEmpty()) {
+            } else if (dItem.getMenuType().equals(MenuType.TEXT) && dItem.getItems() == null) {
                 JMenuItem jItem = new JMenuItem();
                 jItem.setText(dItem.getName());
                 jItem.setSelected(dItem.getSelected());
