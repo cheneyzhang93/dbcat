@@ -1,4 +1,4 @@
-package cc.dbcat.dev.ui.menu;
+package cc.dbcat.dev.ui.menubar;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,18 +1,18 @@
-package cc.dbcat.dev.ui.menu;
+package cc.dbcat.dev.ui.menubar;
 
 import cc.dbcat.dev.Main;
 import cc.dbcat.dev.ui.Accelerator;
 import cc.dbcat.dev.ui.Type;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.formdev.flatlaf.util.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -31,6 +31,20 @@ public class MenuDSLInterpreter {
         return Main.class.getResourceAsStream("/dsl/menu/MenuDSL_" + version + ".json");
     }
 
+    private ActionListener createInstance(String clazzName) {
+        try {
+            Class<?> listenerClass = Class.forName(clazzName);
+            try {
+                return (ActionListener) listenerClass.getDeclaredConstructor().newInstance();
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                     NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Menu createMenu(JsonNode node) {
         Menu menu = new Menu();
         menu.setKey(node.get("key").asText());
@@ -40,6 +54,20 @@ public class MenuDSLInterpreter {
         menu.setSelected(node.get("selected") != null && node.get("selected").asBoolean());
         menu.setSeparator(node.get("separator") != null && node.get("separator").asBoolean());
         menu.setAccelerator(node.get("accelerator") != null ? Accelerator.getKey(node.get("accelerator").asText()) : null);
+        if (node.get("accelerator") != null) {
+            if (node.get("accelerator").isArray()) {
+                for (JsonNode jsonNode : node.get("accelerator")) {
+                    if (jsonNode != null && !jsonNode.isEmpty()) {
+                        // 类的全限定名
+                        menu.getListeners().add(createInstance(jsonNode.asText()));
+                    }
+                }
+            } else {
+                if (node.get("accelerator") != null && !node.get("accelerator").isEmpty()) {
+                    menu.getListeners().add(createInstance(node.get("accelerator").asText()));
+                }
+            }
+        }
         return menu;
     }
 

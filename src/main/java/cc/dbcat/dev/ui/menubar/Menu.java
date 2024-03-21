@@ -1,4 +1,4 @@
-package cc.dbcat.dev.ui.menu;
+package cc.dbcat.dev.ui.menubar;
 
 import cc.dbcat.dev.ui.Type;
 import lombok.Data;

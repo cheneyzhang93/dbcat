@@ -1,17 +1,11 @@
 package cc.dbcat.dev.ui;
 
-import cc.dbcat.dev.Main;
 import cc.dbcat.dev.ui.logo.LogoProvider;
-import cc.dbcat.dev.ui.menu.MenuBarProvider;
-import cc.dbcat.dev.ui.menu.MenuDSLInterpreter;
+import cc.dbcat.dev.ui.menubar.MenuBarProvider;
 import cc.dbcat.dev.ui.theme.ThemeProvider;
-import com.formdev.flatlaf.FlatIntelliJLaf;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
 
 public class MainFrame {
 
