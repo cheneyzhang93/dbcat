@@ -10,9 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -103,6 +107,45 @@ public class ToolBarDSLInterpreter {
         }
     }
 
+    private void addDropDownButtonMouseListener(JToggleButton dropDownButton, JPopupMenu popupMenu) {
+        dropDownButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                dropDownButton.setBackground(ToolbarButtonColor.PRESSED_BACKGROUND);
+                popupMenu.show(dropDownButton, 0, dropDownButton.getHeight());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                dropDownButton.setSelected(false);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dropDownButton.setBackground(ToolbarButtonColor.PRESSED_BACKGROUND);
+            }
+        });
+    }
+
+    private void addPopupMenuListener(JToggleButton dropDownButton, JPopupMenu popupMenu) {
+        popupMenu.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                dropDownButton.setBackground(ToolbarButtonColor.DEFAULT_BACKGROUND);
+            }
+        });
+    }
+
     public JToolBar getInitJToolBar() {
         ToolBar toolBar = getInitDynamicMenuBar();
         JToolBar jToolBar = new JToolBar();
@@ -125,8 +168,9 @@ public class ToolBarDSLInterpreter {
                 JToggleButton dropDownButton = new JToggleButton();
                 dropDownButton.setText(dItem.getName());
                 dropDownButton.setIcon(dItem.getIcon());
-                dropDownButton.addActionListener(e -> popupMenu.show(dropDownButton, 0, dropDownButton.getHeight()));
-
+                // 添加事件
+                addDropDownButtonMouseListener(dropDownButton, popupMenu);
+                addPopupMenuListener(dropDownButton, popupMenu);
                 jToolBar.add(dropDownButton);
             } else if (dItem.getToolType().equals(ToolType.BUTTON)) {
                 JButton jItem = new JButton();
@@ -137,5 +181,6 @@ public class ToolBarDSLInterpreter {
         }
         return jToolBar;
     }
+
 
 }

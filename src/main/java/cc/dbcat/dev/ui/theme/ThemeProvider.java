@@ -1,6 +1,5 @@
 package cc.dbcat.dev.ui.theme;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 
 public class ThemeProvider {
