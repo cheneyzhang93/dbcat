@@ -2,8 +2,10 @@ package cc.dbcat.dev.ui;
 
 import cc.dbcat.dev.ui.image.ImageProvider;
 import cc.dbcat.dev.ui.menubar.MenuBarProvider;
+import cc.dbcat.dev.ui.navbar.NavbarProvider;
 import cc.dbcat.dev.ui.theme.ThemeProvider;
 import cc.dbcat.dev.ui.toolbar.ToolbarProvider;
+import cc.dbcat.dev.ui.workcenter.WorkCenterProvider;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +24,7 @@ public class MainFrame {
         frame.setIconImage(ImageProvider.logo());
         // 窗口设置
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 700);
+        frame.setSize(1100, 800);
         frame.setLayout(new BorderLayout());
         // 菜单栏
         MenuBarProvider menuBarProvider = new MenuBarProvider();
@@ -31,8 +33,12 @@ public class MainFrame {
         ToolbarProvider toolbarProvider = new ToolbarProvider();
         JToolBar toolBar = toolbarProvider.provider(version);
         frame.add(toolBar, BorderLayout.NORTH);
-        toolBar.setPreferredSize(new Dimension(600, toolBar.getPreferredSize().height));
-        //
+        // 数据库导航栏
+        NavbarProvider navbarProvider = new NavbarProvider();
+        frame.add(navbarProvider.provider(), BorderLayout.WEST);
+        // 工作区
+//        WorkCenterProvider workCenterProvider = new WorkCenterProvider();
+//        frame.add(workCenterProvider.provider(), BorderLayout.CENTER);
         return frame;
     }
 
