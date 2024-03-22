@@ -37,7 +37,7 @@ public class ToolBarDSLInterpreter {
     private Tool createTool(JsonNode node) {
         Tool tool = new Tool();
         tool.setKey(node.get("key").asText());
-        tool.setName(node.get("name").asText());
+        tool.setName(node.get("name") != null ? node.get("name").asText() : "");
         if (node.get("icon") != null && !StringUtils.isEmpty(node.get("icon").asText())) {
             tool.setIcon(ImageProvider.icon(node.get("icon").asText()));
         }
@@ -103,18 +103,13 @@ public class ToolBarDSLInterpreter {
         }
     }
 
-    private static JToggleButton getJToggleButton(Tool dItem, JPopupMenu popupMenu) {
-        JToggleButton dropDownButton = new JToggleButton();
-        dropDownButton.setText(dItem.getName());
-        dropDownButton.setIcon(dItem.getIcon());
-        dropDownButton.addActionListener(e -> popupMenu.show(dropDownButton, 0, dropDownButton.getHeight()));
-        return dropDownButton;
-    }
-
     public JToolBar getInitJToolBar() {
         ToolBar toolBar = getInitDynamicMenuBar();
         JToolBar jToolBar = new JToolBar();
         for (Tool dItem : toolBar.getTools()) {
+            if (dItem.getSeparator()) {
+                jToolBar.addSeparator();
+            }
             if (dItem.getToolType().equals(ToolType.MENU)) {
                 JPopupMenu popupMenu = new JPopupMenu();
                 for (Tool tool : dItem.getItems()) {
@@ -127,10 +122,13 @@ public class ToolBarDSLInterpreter {
                     }
                     popupMenu.add(jItem);
                 }
-                JToggleButton dropDownButton = getJToggleButton(dItem, popupMenu);
+                JToggleButton dropDownButton = new JToggleButton();
+                dropDownButton.setText(dItem.getName());
+                dropDownButton.setIcon(dItem.getIcon());
+                dropDownButton.addActionListener(e -> popupMenu.show(dropDownButton, 0, dropDownButton.getHeight()));
+
                 jToolBar.add(dropDownButton);
-            }
-            else if (dItem.getToolType().equals(ToolType.BUTTON)) {
+            } else if (dItem.getToolType().equals(ToolType.BUTTON)) {
                 JButton jItem = new JButton();
                 jItem.setText(dItem.getName());
                 jItem.setIcon(dItem.getIcon());

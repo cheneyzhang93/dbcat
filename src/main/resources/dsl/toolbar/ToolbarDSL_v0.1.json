@@ -3,8 +3,8 @@
   "tools": [
     {
       "key": "create_connect",
-      "name": "新建连接",
-      "icon": "/image/icon24.png",
+      "name": "连接",
+      "icon": "/image/icon/create_connect.png",
       "type": "menu",
       "items": [
         {
@@ -17,39 +17,39 @@
     },
     {
       "key": "create_query",
-      "name": "新建查询",
-      "icon": "/image/icon24.png",
+      "name": "查询",
+      "icon": "/image/icon/create_query.png",
       "listeners": []
     },
     {
       "key": "table",
-      "name": "表",
-      "icon": "/image/icon24.png",
+      "name": "表格",
+      "icon": "/image/icon/table.png",
       "separator": true,
       "listeners": []
     },
     {
       "key": "view",
       "name": "视图",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/view.png",
       "listeners": []
     },
     {
       "key": "function",
       "name": "函数",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/function.png",
       "listeners": []
     },
     {
       "key": "user",
       "name": "用户",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/user.png",
       "listeners": []
     },
     {
       "key": "other",
       "name": "其他",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/other.png",
       "type": "menu",
       "items": [
         {
@@ -69,25 +69,25 @@
     {
       "key": "query",
       "name": "查询",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/query.png",
       "listeners": []
     },
     {
       "key": "backup",
       "name": "备份",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/backup.png",
       "listeners": []
     },
     {
       "key": "task",
       "name": "任务",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/task.png",
       "listeners": []
     },
     {
       "key": "model",
       "name": "模型",
-      "icon": "/image/icon24.png",
+      "icon": "/image/icon/model.png",
       "listeners": []
     }
   ]

@@ -3,11 +3,10 @@ import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,71 +14,70 @@ public class Test {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            try {
-                createAndShowGUI();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
+            JFrame frame = new JFrame("Popup Menu Example");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new BorderLayout());
 
-    private static void createAndShowGUI() throws IOException {
-        JFrame frame = new JFrame("Custom Toolbar Panel with Menu Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 200);
-        frame.setLayout(new BorderLayout());
-        frame.setLocationRelativeTo(null); // Center the frame
-
-        JPanel toolbarContainer = new JPanel();
-        toolbarContainer.setLayout(new BoxLayout(toolbarContainer, BoxLayout.X_AXIS));
-        toolbarContainer.setOpaque(false);
-        toolbarContainer.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        // Assuming we want to create 3 custom toolbar panels
-        for (int i = 0; i < 3; i++) {
-            // Create custom toolbar panel
-            final JPanel customToolbar = createCustomToolbarPanel("Toolbar " + (i + 1),"/image/favicon.png");
-
-            // Add a mouse listener to the panel to show the popup menu on click
-            int finalI = i;
-            int finalI1 = i;
-            customToolbar.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (e.isPopupTrigger()) {
-                        showPopup(e);
-                    }
-                }
+            // 创建一个按钮，点击时显示弹出菜单
+            JButton button = new JButton("Show Popup Menu");
+            button.addActionListener(new ActionListener() {
+                private JPopupMenu popupMenu;
+                private JMenuItem menuItemToRemove;
 
                 @Override
-                public void mouseReleased(MouseEvent e) {
-                    if (e.isPopupTrigger()) {
-                        showPopup(e);
+                public void actionPerformed(ActionEvent e) {
+                    // 如果弹出菜单尚未创建，则创建它
+                    if (popupMenu == null) {
+                        popupMenu = new JPopupMenu();
+                        // 添加一些菜单项
+                        popupMenu.add(new JMenuItem("Option 1"));
+                        popupMenu.add(new JMenuItem("Option 2"));
+                        menuItemToRemove = new JMenuItem("Option to Remove");
+                        popupMenu.add(menuItemToRemove);
+
+                        // 添加一个用于移除菜单项的监听器
+                        popupMenu.addPopupMenuListener(new PopupMenuListener() {
+                            @Override
+                            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                                // 在弹出菜单显示之前，你可以在这里添加逻辑来动态地移除菜单项
+                                // 例如，基于某些条件移除菜单项
+                                // popupMenu.remove(menuItemToRemove);
+                            }
+
+                            @Override
+                            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {}
+
+                            @Override
+                            public void popupMenuCanceled(PopupMenuEvent e) {}
+                        });
                     }
-                }
 
-                private void showPopup(MouseEvent e) {
-                    JPopupMenu popupMenu = new JPopupMenu();
-                    JMenuItem item1 = new JMenuItem("Option 1");
-                    JMenuItem item2 = new JMenuItem("Option 2");
-                    popupMenu.add(item1);
-                    popupMenu.add(item2);
-
-                    // Add action listener to menu items
-                    item1.addActionListener(ae -> System.out.println("Option 1 selected on toolbar " + (finalI + 1)));
-
-                    item2.addActionListener(ae -> System.out.println("Option 2 selected on toolbar " + (finalI1 + 1)));
-
-                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                    // 显示弹出菜单
+                    popupMenu.show(button, 0, button.getHeight());
                 }
             });
 
-            toolbarContainer.add(customToolbar);
-            toolbarContainer.add(Box.createHorizontalStrut(10)); // Add spacing
-        }
+            frame.add(button, BorderLayout.CENTER);
 
-        frame.add(toolbarContainer, BorderLayout.NORTH);
-        frame.setVisible(true);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+
+    private static void checkButtonVisibility(JToolBar toolbar) {
+        Rectangle toolbarBounds = toolbar.getBounds();
+        for (Component comp : toolbar.getComponents()) {
+            if (comp instanceof JButton) {
+                JButton button = (JButton) comp;
+                Rectangle buttonBounds = button.getBounds();
+                if (!toolbarBounds.contains(buttonBounds)) {
+                    System.out.println("Button " + button.getText() + " is not fully visible.");
+                } else {
+                    System.out.println("Button " + button.getText() + " is visible.");
+                }
+            }
+        }
     }
 
 

@@ -32,7 +32,7 @@ public class MainFrame {
         JToolBar toolBar = toolbarProvider.provider(version);
         frame.add(toolBar, BorderLayout.NORTH);
         toolBar.setPreferredSize(new Dimension(600, toolBar.getPreferredSize().height));
-
+        //
         return frame;
     }
 
