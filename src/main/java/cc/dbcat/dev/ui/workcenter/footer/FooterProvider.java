@@ -1,4 +1,4 @@
-package cc.dbcat.dev.ui.footer;
+package cc.dbcat.dev.ui.workcenter.footer;
 
 import javax.swing.*;
 import java.awt.*;

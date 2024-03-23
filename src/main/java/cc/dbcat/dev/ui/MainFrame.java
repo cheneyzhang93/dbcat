@@ -1,6 +1,6 @@
 package cc.dbcat.dev.ui;
 
-import cc.dbcat.dev.ui.footer.FooterProvider;
+import cc.dbcat.dev.ui.workcenter.footer.FooterProvider;
 import cc.dbcat.dev.ui.theme.GlobalUI;
 import cc.dbcat.dev.ui.workcenter.WorkCenterMainProvider;
 import cc.dbcat.dev.ui.workcenter.detailbar.DetailbarProvider;
