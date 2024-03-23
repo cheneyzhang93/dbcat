@@ -56,34 +56,56 @@ public class Test {
 //    }
 
     public static void main(String[] args) {
-        // 创建 JFrame
-        JFrame frame = new JFrame("Tabbed Pane with Scroll Panel Example");
+        JFrame frame = new JFrame("Embedded Tabs Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setSize(400, 300);
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
 
-        // 创建 JTabbedPane
-        JTabbedPane tabbedPane = new JTabbedPane();
-        frame.add(tabbedPane, BorderLayout.CENTER);
+        // 创建主面板
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        frame.add(mainPanel, BorderLayout.CENTER);
 
-        // 创建第一个选项卡的内容
-        JPanel panel1 = new JPanel();
-        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS)); // 使用垂直BoxLayout
-        for (int i = 0; i < 20; i++) { // 添加一些组件作为示例
-            panel1.add(new JLabel("Label " + (i + 1)));
-        }
-        JScrollPane scrollPane1 = new JScrollPane(panel1); // 创建滚动面板
-        tabbedPane.addTab("Tab 1", scrollPane1); // 将滚动面板添加到第一个选项卡
+        // 创建选项卡按钮面板
+        JPanel tabButtonPanel = new JPanel();
+        tabButtonPanel.setOpaque(false); // 设置面板透明
+        tabButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
-        // 创建第二个选项卡的内容
-        JPanel panel2 = new JPanel();
-        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
-        for (int i = 0; i < 20; i++) {
-            panel2.add(new JLabel("Label " + (i + 1)));
-        }
-        JScrollPane scrollPane2 = new JScrollPane(panel2);
-        tabbedPane.addTab("Tab 2", scrollPane2); // 将滚动面板添加到第二个选项卡
+        // 创建选项卡按钮
+        JButton tabButton1 = new JButton("Tab 1");
+        JButton tabButton2 = new JButton("Tab 2");
+        tabButtonPanel.add(tabButton1);
+        tabButtonPanel.add(tabButton2);
+
+        // 创建内容面板
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.add(new JLabel("Content for Tab 1"), BorderLayout.CENTER);
+
+        // 将选项卡按钮面板和内容面板添加到主面板
+        mainPanel.add(tabButtonPanel, BorderLayout.NORTH);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+
+        // 选项卡按钮的事件处理
+        tabButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contentPanel.removeAll(); // 清除当前内容
+                contentPanel.add(new JLabel("Content for Tab 1"), BorderLayout.CENTER); // 添加新内容
+                contentPanel.revalidate(); // 重新验证布局
+                contentPanel.repaint(); // 重绘面板
+            }
+        });
+
+        tabButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contentPanel.removeAll(); // 清除当前内容
+                contentPanel.add(new JLabel("Content for Tab 2"), BorderLayout.CENTER); // 添加新内容
+                contentPanel.revalidate(); // 重新验证布局
+                contentPanel.repaint(); // 重绘面板
+            }
+        });
     }
 
     private static void checkButtonVisibility(JToolBar toolbar) {

@@ -131,12 +131,12 @@ public class ToolBarDSLInterpreter {
         popupMenu.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-
+                dropDownButton.setBackground(ToolbarButtonColor.DEFAULT_BACKGROUND);
             }
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-
+                dropDownButton.setBackground(ToolbarButtonColor.DEFAULT_BACKGROUND);
             }
 
             @Override
